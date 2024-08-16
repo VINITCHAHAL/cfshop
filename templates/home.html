@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Coffee Shop</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .card-img-top {
+            width: 100%; /* Makes the image width fill the card */
+            height: 200px; /* Sets a fixed height for the image */
+            object-fit: cover; /* Ensures the image covers the area while maintaining its aspect ratio */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Menu</h1>
+        <div class="row">
+            {% for item in items %}
+                <div class="col-md-4 mb-4">
+                    <div class="card" style="width: 18rem;">
+                        {% if item.image_url %}
+                            <img src="{{ item.image_url }}" alt="Image" class="card-img-top">
+                        {% else %}
+                            <p class="card-img-top text-center p-3">No image available</p>
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ item.name }}</h5>
+                            <p class="card-text">Price: ${{ item.price }}</p>
+                            <p class="card-text">Quantity: {{ item.quantity }}</p>
+                            <a href="#" class="btn btn-primary">Add To Cart</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p class="text-center">No items found.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
